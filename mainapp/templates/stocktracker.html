@@ -1,0 +1,87 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %}
+StockTracker
+{% endblock %}
+{% block css %}
+<style href="{% static 'css/basic.css' %}"></style>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h1>Live Stock Tracker(Updates every 1 minute)</h1>
+    <table class="table-container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Time(NYC)</th>
+                    <th scope="col">Price(USD)</th>
+                    <th scope="col">Change</th>
+                </tr>
+            </thead>
+            <tbody id="table_body">
+                {% for stocks in selectedStocks %}
+                <tr class="row{{forloop.counter}}">
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>
+                        {% for key, value in top25.items %}
+                        {% if stocks == key %}
+                        <strong>{{value}}</strong>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="datetime"></td>
+                    <td class="stock_price">
+                        <strong></strong>
+                    </td>
+                    <td class="change"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </table>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+
+    var queryString = window.location.search.substring(1);
+
+    console.log(queryString);
+
+    var socket = new WebSocket('ws://' + window.location.host + '/ws/stock/' + '?' + queryString);
+
+    no_of_rows = document.getElementById("table_body").rows.length;
+
+    var prev_data = {};
+
+    socket.onmessage = function (event) {
+
+        var data = JSON.parse(event.data);
+
+        console.log(data);
+
+        for (var i = 0; i < no_of_rows; i++) {
+
+            var change = ((parseInt(data[i]) - parseInt(prev_data[i])) / 100).toFixed(2);
+
+            var green = change >= 0 || change == "NaN" ? true : false;
+
+            if (green) {
+                document.querySelector('.row' + CSS.escape(i + 1) + ' .stock_price').innerHTML = "<font style='color:#0fa621;'>" + "<strong>" + data[i] + "</strong>" + "</font>";
+                document.querySelector('.row' + CSS.escape(i + 1) + ' .change').innerHTML = "<font style='color:#0fa621;'>" + "<strong>" + change + "</strong>" + "% " + "&#x2191;" + "</font>";
+            }
+            else {
+                document.querySelector('.row' + CSS.escape(i + 1) + ' .stock_price').innerHTML = "<font style='color:red;'>" + "<strong>" + data[i] + "</strong>" + "</font>";
+                document.querySelector('.row' + CSS.escape(i + 1) + ' .change').innerHTML = "<font style='color:red;'>" + "<strong>" + change + "</strong>" + "% " + "&#x2193;" + "</font>";
+            }
+
+            document.querySelector('.row' + CSS.escape(i + 1) + ' .datetime').innerHTML = "<strong>" + data.nyctime + "</strong>";
+
+        }
+
+        prev_data = data;
+    };
+</script>
+{% endblock %}

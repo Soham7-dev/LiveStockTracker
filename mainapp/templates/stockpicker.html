@@ -1,0 +1,57 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %}
+StockPicker
+{% endblock %}
+{% block css %}
+<style>
+    .form-select option::before {
+        content: "\2610";
+        width: 1.3em;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .form-select option:checked::before {
+        content: "\2611";
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h1><strong>Live Stock Tracker</strong></h1>
+    <p><strong>Choose Your Favourite Stocks</strong></p>
+    <label for="stockpicker"><strong>Select Stocks(You can select atmost</strong><strong style="color:crimson;"> 5
+            stocks)</strong></label>
+    <form action="stocktracker" method="get">
+        <select name="pickstocks" class="form-select form-select-lg mb-3" multiple aria-label="multiple select example"
+            style="height:15em;">
+            {% for i in top25 %}
+            <option value="{{i}}">{{i}}</option><br>
+            {% endfor %}
+        </select>
+        <br>
+        <div class="d-grid gap-2">
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    window.onmousedown = function (e) {
+        var el = e.target;
+        if (el.tagName.toLowerCase() == 'option' && el.parentNode.hasAttribute('multiple')) {
+            e.preventDefault();
+
+            // toggle selection
+            if (el.hasAttribute('selected')) el.removeAttribute('selected');
+            else el.setAttribute('selected', '');
+
+            // hack to correct buggy behavior
+            var select = el.parentNode.cloneNode(true);
+            el.parentNode.parentNode.replaceChild(select, el.parentNode);
+        }
+    }
+</script>
+{% endblock %}
