@@ -38,3 +38,23 @@ This Web Application is build in order to acknowledge the concepts of **Django-C
 - Then open terminal and run **python manage.py runserver** in the BASE Directory of project
 
 ---
+
+## Demo
+
+![](https://github.com/Soham7-dev/Images-and-GIFS/blob/main/StockPicker%20-%20Brave%202021-11-18%2021-20-50.gif)
+
+### SS 1
+
+![](https://github.com/Soham7-dev/Images-and-GIFS/blob/main/Screenshot%20(197).png)
+
+### SS 2
+
+![](https://github.com/Soham7-dev/Images-and-GIFS/blob/main/Screenshot%20(198).png)
+
+### SS 3
+
+![](https://github.com/Soham7-dev/Images-and-GIFS/blob/main/Screenshot%20(212).png)
+
+### SS 4
+
+![](https://github.com/Soham7-dev/Images-and-GIFS/blob/main/Screenshot%20(213).png)
