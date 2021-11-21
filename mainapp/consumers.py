@@ -44,7 +44,8 @@ class StockConsumer(WebsocketConsumer):
 
                 headers = {
                     'x-rapidapi-host': "twelve-data1.p.rapidapi.com",
-                    'x-rapidapi-key': "be54dfd69fmsh47add16c3c47959p1d8339jsnbff1e5a80706"
+                    # Sign Up in rapidapi.com and subscribe to twelve-data-api
+                    'x-rapidapi-key': "******Your API KEY******"
                 }
 
                 response = requests.request(
