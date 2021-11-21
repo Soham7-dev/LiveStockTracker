@@ -35,5 +35,6 @@ This Web Application is build in order to acknowledge the concepts of **Django-C
 - **First and foremost** you have to Create an Account in **rapidapi.com** and get your **API key**
 - Then you have to have a **subscription** for **Tweleve Data Api**
 - Then **replace/put** your **API key** in the **mainapp/consumers.py** file in the project
+- Then open terminal and run **python manage.py runserver** in the BASE Directory of project
 
 ---
