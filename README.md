@@ -23,14 +23,12 @@ This Web Application is build in order to acknowledge the concepts of **Django-C
 - User can select his/her favourite stocks from the listed Stocks
 - After selecting stocks User can monitor the Stocks Prices
 - Prices get updated every 1 minute
-- User can see the **Increase** 🔺 or **Decrease** 🔻 in Price.
+- User can see the **Increase** 🔺 or **Decrease** 🔻 in Price
 - Supports both **Light** and **Dark** mode
 
 ## Features I would like to add
 - Currently for Development Purpose This Application is using **free version** of **Tweleve Data Api** which allows only **8 requests per minute**
 - Enable it for Multiple Users
-
----
 
 ## How to Run the App
 - **First and foremost** you have to Create an Account in **rapidapi.com** and get your **API key**
