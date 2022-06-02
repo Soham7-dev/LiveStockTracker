@@ -23,7 +23,7 @@ This Web Application is build in order to acknowledge the concepts of **Django-C
 - User can select his/her favourite stocks from the listed Stocks
 - After selecting stocks User can monitor the Stocks Prices
 - Prices get updated every 1 minute
-- User can see the **Increase** 🔺 or **Decrease** 🔻 in Price
+- User can see the **Increase** 🔺 or **Decrease** 🔻 in Price.
 - Supports both **Light** and **Dark** mode
 
 ## Features I would like to add
